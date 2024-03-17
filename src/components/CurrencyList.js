@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
- 
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+
 const CurrencyList = () => {
-const [selectedCurrency, setSelectedCurrency] = useState('$'); // Default currency
+  const {dispatch } = useContext(AppContext);
 
-const handleCurrencyChange = (event) => {
-setSelectedCurrency(event.target.value);
-};
-return (
-<div className='alert alert-primary'>
-<label htmlFor="currency">Currency:</label>
-<select id="currency" value={selectedCurrency} onChange={handleCurrencyChange}>
-<option value="$">$ Dollar</option>
-<option value="£">£ Pound</option>
-<option value="€">€ Euro</option>
-<option value="₹">₹ Rupee</option> 
+    const changeCurrency = (expense)=>{
+            dispatch({
+                type: 'CHG_CURRENCY',
+                payload: expense,
+            })
+    }
+    
 
-</select>
-</div>
-);
-};
+  return (
+        <div className='alert alert-secondary'> currency {
+      <select name="currency" id="currency" onChange={event=>changeCurrency(event.target.value)}>
+        <option value="£">Pound(£)</option>
+        <option value="₹">Rupee(₹)</option>
+        <option value="€">Euro(€)</option>
+        <option value="$">Dollar($)</option>
+      </select>	
+      }	
+    </div>
+    );
+    };
+
 export default CurrencyList;
