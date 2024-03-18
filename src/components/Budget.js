@@ -7,7 +7,7 @@ const Budget = () => {
     const [newBudget, setNewBudget] = useState(budget);
     const handleBudgetChange = (event) => {
         setNewBudget(event.target.value);
-        if (newBudget<totalExpenses){
+        if (budget<totalExpenses){
             alert("You cannot reduce budget value lower than spending");
             return (newBudget);
         }
